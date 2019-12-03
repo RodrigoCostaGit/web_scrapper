@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import lxml
 import requests
+import pandas as pd
 url="https://www.imdb.com/chart/top/"
 data=requests.get(url)
 soup=BeautifulSoup(data.text,"lxml") 
@@ -24,6 +25,16 @@ for movies in top250:
     year.append(movie_year)
 
 
-print(titulo)
-print(score)
-print(year)
+# print(titulo)
+# print(score)
+# print(year)
+tabela=pd.DataFrame({"movie":titulo,
+"score":score,
+"ano":year,
+})
+
+# print(tabela)
+
+# uncomment the next 2 lines to display full dataframe
+# with pd.option_context("display.max_rows",None,"display.max.columns",None):
+#     print(tabela)
